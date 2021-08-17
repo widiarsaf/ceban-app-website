@@ -5,7 +5,7 @@ class HomeContainer extends Component {
 	render() {
 		return (
 			<div>
-				<TableComponent users = {this.props.users} ></TableComponent>
+				<TableComponent/>
 			</div>
 		);
 	}

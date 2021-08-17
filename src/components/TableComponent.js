@@ -13,6 +13,7 @@ import {
 	faTrash,
 	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { connect } from 'react-redux';
 
 
 const {SearchBar}=Search;
@@ -69,13 +70,16 @@ const defaultSorted=[{
 }];
 
 
-
+const mapStateToProps=(state) => {
+	return {
+		users : state.users.users
+	};
+};
 
 const TableComponent=(props) => {
 	return (
 		<div>
 			<Container>
-
 				<ToolkitProvider
 					bootstrap4
 					keyField='id'
@@ -112,4 +116,4 @@ const TableComponent=(props) => {
 	);
 };
 
-export default TableComponent;
+export default connect(mapStateToProps, null)(TableComponent);
