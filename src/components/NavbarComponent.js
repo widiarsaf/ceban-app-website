@@ -18,14 +18,14 @@ const NavbarComponent=(props) => {
 
 	return (
 		<div>
-			<Navbar color="light" light expand="md">
+			<Navbar color="dark" dark expand="md" className = "mb-5">
 				<Container>
 					<NavbarBrand href="/">CEBAN</NavbarBrand>
 					<NavbarToggler onClick={toggle} />
 					<Collapse isOpen={isOpen} navbar>
 						<Nav className="mr-auto" navbar>
 							<NavItem>
-								<NavLink href="/components/">Users</NavLink>
+								<NavLink href = "#">Users</NavLink>
 							</NavItem>
 							<NavItem>
 								<NavLink href="https://github.com/reactstrap/reactstrap">About Us</NavLink>
