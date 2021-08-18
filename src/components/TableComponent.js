@@ -108,9 +108,13 @@ const TableComponent=(props) => {
 									</Link>
 								</Col>
 								<Col>
-									<div className="float-right">
-										<SearchBar {...props.searchProps} placeholder="Cari.." />
-									</div>
+									<Row>
+										<Col>
+												<div className="float-right"><b>Cari : </b> 
+													<SearchBar style={{minWidth: "440px"}}{...props.searchProps} placeholder="masukkan kata kunci pencarian.." className="float-right"/>
+											</div>
+										</Col>
+									</Row>
 								</Col>
 							</Row>
 
