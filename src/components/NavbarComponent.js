@@ -31,8 +31,8 @@ const NavbarComponent=(props) => {
 								<NavLink href="https://github.com/reactstrap/reactstrap">About Us</NavLink>
 							</NavItem>
 						</Nav>
-					</Collapse>
 					<NavbarText>Admin</NavbarText>
+					</Collapse>
 				</Container>
 			</Navbar>
 		</div>

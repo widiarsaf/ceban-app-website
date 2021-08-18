@@ -1,6 +1,6 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {Container,Button,Row,Col} from "reactstrap";
+import {Container,Button,Row,Col,Spinner} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ToolkitProvider,{Search} from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -13,7 +13,7 @@ import {
 	faTrash,
 	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 
 const {SearchBar}=Search;
@@ -25,16 +25,20 @@ const columns=[{
 	},
 	sort: true
 },{
-	dataField: 'nama',
-	text: 'Nama',
+	dataField: 'name',
+	text: 'Name',
 	sort: true
 },{
-	dataField: 'umur',
-	text: 'Umur',
+	dataField: 'username',
+	text: 'Username',
 	sort: true
 },{
-	dataField: 'alamat',
-	text: 'Alamat',
+	dataField: 'telp',
+	text: 'Telp',
+	sort: true
+},{
+	dataField: 'level',
+	text: 'Level',
 	sort: true
 },
 {
@@ -42,22 +46,25 @@ const columns=[{
 	text: "Action",
 	formatter: (rowContent,row) => {
 		return (
-			<div style={{"gap": "20px","display": "inline"}}>
+			<div >
 				<Link to={"detail/"+row.id}>
-					<Button color="info" className="mr-2">
-						<FontAwesomeIcon icon={faInfo} /> Detail
-					</Button>{' '}
+					<Button color="info" data-toggle="tooltip" title="Lihat Detail">
+						<FontAwesomeIcon icon={faInfo} color="white" />
+					</Button>
 				</Link>
+				{' '}
 				<Link to={"edit/"+row.id}>
-					<Button color="warning" className="mr-2">
-						<FontAwesomeIcon icon={faEdit} />
-					</Button>{' '}
+					<Button color="warning"data-toggle="tooltip" title="Edit Data Users">
+						<FontAwesomeIcon icon={faEdit} color= "white"/>
+					</Button>
 				</Link>
+				{' '}
 				<Link>
-					<Button color="danger" className="mr-2">
+					<Button color="danger"  data-toggle="tooltip" title="Hapus Data Users">
 						<FontAwesomeIcon icon={faTrash} />
-					</Button>{' '}
+					</Button>
 				</Link>
+				{' '}
 			</div>
 		);
 	},
@@ -72,7 +79,8 @@ const defaultSorted=[{
 
 const mapStateToProps=(state) => {
 	return {
-		users : state.users.users
+		getUsersList: state.users.getUsersList,
+		errorUsersList : state.users.errorUsersList
 	};
 };
 
@@ -80,10 +88,11 @@ const TableComponent=(props) => {
 	return (
 		<div>
 			<Container>
+				{props.getUsersList ?
 				<ToolkitProvider
 					bootstrap4
 					keyField='id'
-					data={props.users}
+					data={props.getUsersList}
 					columns={columns}
 					defaultSorted={defaultSorted}
 					search
@@ -111,9 +120,16 @@ const TableComponent=(props) => {
 					)
 					}
 				</ToolkitProvider>
+					:(
+						<div className="text-center">
+							{props.errorUsersList ? <h3>{props.errorUsersList}</h3> :
+								<Spinner color="dark" children=" " />
+							}
+						</div>
+					 )}
 			</Container>
 		</div>
 	);
 };
 
-export default connect(mapStateToProps, null)(TableComponent);
+export default connect(mapStateToProps,null)(TableComponent);
