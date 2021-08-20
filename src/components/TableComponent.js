@@ -40,6 +40,10 @@ const columns=[{
 	dataField: 'level',
 	text: 'Level',
 	sort: true
+},{
+	dataField: 'entry_year',
+	text: 'Entry Year',
+	sort: true
 },
 {
 	dataField: "link",
@@ -54,13 +58,13 @@ const columns=[{
 				</Link>
 				{' '}
 				<Link to={"edit/"+row.id}>
-					<Button color="warning"data-toggle="tooltip" title="Edit Data Users">
-						<FontAwesomeIcon icon={faEdit} color= "white"/>
+					<Button color="warning" data-toggle="tooltip" title="Edit Data Users">
+						<FontAwesomeIcon icon={faEdit} color="white" />
 					</Button>
 				</Link>
 				{' '}
 				<Link>
-					<Button color="danger"  data-toggle="tooltip" title="Hapus Data Users">
+					<Button color="danger" data-toggle="tooltip" title="Hapus Data Users">
 						<FontAwesomeIcon icon={faTrash} />
 					</Button>
 				</Link>
@@ -80,7 +84,7 @@ const defaultSorted=[{
 const mapStateToProps=(state) => {
 	return {
 		getUsersList: state.users.getUsersList,
-		errorUsersList : state.users.errorUsersList
+		errorUsersList: state.users.errorUsersList
 	};
 };
 
@@ -88,49 +92,49 @@ const TableComponent=(props) => {
 	return (
 		<div>
 			<Container>
-				{props.getUsersList ?
-				<ToolkitProvider
-					bootstrap4
-					keyField='id'
-					data={props.getUsersList}
-					columns={columns}
-					defaultSorted={defaultSorted}
-					search
-				>
-					{(props) => (
-						<div>
-							<Row>
-								<Col>
-									<Link to={"create/"}>
-										<Button color="info" className="mr-2">
-											<FontAwesomeIcon icon={faPlus} /> Tambah User
-										</Button>{' '}
-									</Link>
-								</Col>
-								<Col>
-									<Row>
-										<Col>
-												<div className="float-right"><b>Cari : </b> 
-													<SearchBar style={{minWidth: "440px"}}{...props.searchProps} placeholder="masukkan kata kunci pencarian.." className="float-right"/>
-											</div>
-										</Col>
-									</Row>
-								</Col>
-							</Row>
+				{props.getUsersList?
+					<ToolkitProvider
+						bootstrap4
+						keyField='id'
+						data={props.getUsersList}
+						columns={columns}
+						defaultSorted={defaultSorted}
+						search
+					>
+						{(props) => (
+							<div>
+								<Row>
+									<Col>
+										<Link to={"create/"}>
+											<Button color="info" className="mr-2">
+												<FontAwesomeIcon icon={faPlus} /> Tambah User
+											</Button>{' '}
+										</Link>
+									</Col>
+									<Col>
+										<Row>
+											<Col>
+												<div className="float-right"><b>Cari : </b>
+													<SearchBar style={{minWidth: "440px"}}{...props.searchProps} placeholder="masukkan kata kunci pencarian.." className="float-right" />
+												</div>
+											</Col>
+										</Row>
+									</Col>
+								</Row>
 
-							<br />
-							<BootstrapTable {...props.baseProps} pagination={paginationFactory()} />
-						</div>
-					)
-					}
-				</ToolkitProvider>
+								<br />
+								<BootstrapTable {...props.baseProps} pagination={paginationFactory()} />
+							</div>
+						)
+						}
+					</ToolkitProvider>
 					:(
 						<div className="text-center">
-							{props.errorUsersList ? <h3>{props.errorUsersList}</h3> :
+							{props.errorUsersList? <h3>{props.errorUsersList}</h3>:
 								<Spinner color="dark" children=" " />
 							}
 						</div>
-					 )}
+					)}
 			</Container>
 		</div>
 	);

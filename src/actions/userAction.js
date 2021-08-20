@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 export const GET_USERS_LIST='GET_USERS_LIST';
+export const GET_USER_DETAIL='GET_USER_DETAIL';
 
-export const getUsersList = () => {
+export const getUsersList=() => {
 	return (dispatch) => {
 		axios.get('/users')
 			.then(function(response) {
@@ -11,9 +12,9 @@ export const getUsersList = () => {
 					type: GET_USERS_LIST,
 					payload: {
 						data: result,
-						erorMessage : false
+						erorMessage: false
 					}
-				})
+				});
 			})
 			.catch(function(error) {
 				dispatch({
@@ -22,9 +23,44 @@ export const getUsersList = () => {
 						data: false,
 						erorMessage: error.message
 					}
-				})
+				});
+			});
+	};
+};
+
+export const getUserDetail=(id) => {
+	return (dispatch) => {
+		axios.get('/users/'+id)
+			.then(function(response) {
+				let result=response.data;
+				dispatch({
+					type: GET_USER_DETAIL,
+					payload: {
+						data: result,
+						erorMessage: false
+					}
+				});
 			})
-	}
-}
+			.catch(function(error) {
+				dispatch({
+					type: GET_USER_DETAIL,
+					payload: {
+						data: false,
+						erorMessage: error.message
+					}
+				});
+			});
+	};
+};
 
-
+export const deleteUserDetail=() => {
+	return (dispatch) => {
+		dispatch({
+			type: GET_USER_DETAIL,
+			payload: {
+				data: false,
+				erorMessage: false
+			}
+		});
+	};
+};
