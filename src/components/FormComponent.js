@@ -34,12 +34,13 @@ const renderField=({
 	</Row>
 );
 
+
 const mapStateToProps=(state) => {
 	return {
 		initialValues: {
 			name: state.users.getUserDetail.name,
 			username: state.users.getUserDetail.username,
-			password: state.users.getUserDetail.password,
+			// password: state.users.getUserDetail.password,
 			telp: state.users.getUserDetail.telp,
 			level: state.users.getUserDetail.level,
 			entry_year: state.users.getUserDetail.entry_year,
@@ -84,6 +85,7 @@ class FormComponent extends Component {
 								label="Password :"
 							/>
 						</FormGroup>
+						<p style={{"fontSize" : "10px"}}>* Masukkan password baru</p>
 					</Col>
 
 					<Col md={6}>
@@ -114,8 +116,8 @@ class FormComponent extends Component {
 							<Col>
 								<Field component="select" name="level" style={{"height": "37px","borderRadius": "3px","width": "200px","border": "1px solid #cccccc"}}>
 									<option value="Admin">Admin</option>
-									<option value="Student">Guru</option>
-									<option value="Teacher">Siswa</option>
+									<option value="Student">Siswa</option>
+									<option value="Teacher">Guru</option>
 								</Field>
 							</Col>
 						</FormGroup>

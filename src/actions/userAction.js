@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_USERS_LIST='GET_USERS_LIST';
 export const GET_USER_DETAIL='GET_USER_DETAIL';
 export const POST_USER_CREATE='POST_USER_CREATE';
+export const PUT_USER_EDIT='PUT_USER_EDIT';
 
 export const getUsersList=() => {
 	return (dispatch) => {
@@ -90,6 +91,31 @@ export const postUserCreate=(data) => {
 			.catch(function(error) {
 				dispatch({
 					type: POST_USER_CREATE,
+					payload: {
+						data: false,
+						erorMessage: error.message
+					}
+				});
+			});
+	};
+};
+
+export const putUserEdit=(data, id) => {
+	return (dispatch) => {
+		axios.put('/users/'+ id,data)
+			.then(function(response) {
+				let result=response.data;
+				dispatch({
+					type: PUT_USER_EDIT,
+					payload: {
+						data: result,
+						erorMessage: false
+					}
+				});
+			})
+			.catch(function(error) {
+				dispatch({
+					type: PUT_USER_EDIT,
 					payload: {
 						data: false,
 						erorMessage: error.message
