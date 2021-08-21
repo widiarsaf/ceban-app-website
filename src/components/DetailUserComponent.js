@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Table} from "reactstrap";
+// import reverseMd5 from 'reverse-md5';
 
 const mapStateToProps=(state) => {
 	return {
@@ -8,6 +9,7 @@ const mapStateToProps=(state) => {
 		errorUserDetail: state.users.errorUserDetail
 	};
 };
+
 const DetailUserComponent=(props) => {
 	return (
 		<Table striped>

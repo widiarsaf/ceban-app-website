@@ -2,7 +2,7 @@
   "name": "ceban-app",
   "version": "0.1.0",
   "private": true,
-  "proxy" :  "http://api.ceban-app.com",
+  "proxy": "http://api.ceban-app.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
+    "md5": "^2.3.0",
     "react": "^17.0.2",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
@@ -22,7 +23,9 @@
     "react-scripts": "4.0.3",
     "reactstrap": "^8.9.0",
     "redux": "^4.1.1",
+    "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
+    "reverse-md5": "^0.0.5",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

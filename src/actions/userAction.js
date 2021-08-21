@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GET_USERS_LIST='GET_USERS_LIST';
 export const GET_USER_DETAIL='GET_USER_DETAIL';
+export const POST_USER_CREATE='POST_USER_CREATE';
 
 export const getUsersList=() => {
 	return (dispatch) => {
@@ -62,5 +63,31 @@ export const deleteUserDetail=() => {
 				erorMessage: false
 			}
 		});
+	};
+};
+
+
+export const postUserCreate=(data) => {
+	return (dispatch) => {
+		axios.post('/users/' , data)
+			.then(function(response) {
+				let result=response.data;
+				dispatch({
+					type: POST_USER_CREATE,
+					payload: {
+						data: result,
+						erorMessage: false
+					}
+				});
+			})
+			.catch(function(error) {
+				dispatch({
+					type: POST_USER_CREATE,
+					payload: {
+						data: false,
+						erorMessage: error.message
+					}
+				});
+			});
 	};
 };
