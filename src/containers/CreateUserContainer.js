@@ -3,7 +3,6 @@ import {Container} from 'reactstrap';
 import BackComponent from '../components/BackComponent';
 import FormComponent from '../components/FormComponent';
 import {connect} from 'react-redux';
-// import md5 from 'md5';
 import {postUserCreate} from '../actions/userAction';
 import swal from 'sweetalert'; //sweet alert
 

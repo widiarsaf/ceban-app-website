@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getUserDetail, putUserEdit} from '../actions/userAction';
 import FormComponent from '../components/FormComponent';
 import swal from 'sweetalert'; //sweet alert
+import md5 from 'md5';
 
 const mapStateToProps=(state) => {
 	return {
@@ -19,7 +20,15 @@ class EditUserContainer extends Component {
 	}
 
 	handleSubmit(data) {
-		this.props.dispatch(putUserEdit(data, this.props.match.params.id));
+		let newData={};
+		newData.name=data.name;
+		newData.username=data.username;
+		newData.password=md5(data.password);
+		newData.telp=data.telp;
+		newData.level=data.level;
+		newData.entry_year=data.entry_year;
+
+		this.props.dispatch(putUserEdit(newData, this.props.match.params.id));
 
 	}
 

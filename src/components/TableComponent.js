@@ -14,66 +14,36 @@ import {
 	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import {connect} from 'react-redux';
+import swal from 'sweetalert'; //sweet alert
+import {deleteUser} from '../actions/userAction';
+
 
 
 const {SearchBar}=Search;
-const columns=[{
-	dataField: 'id',
-	text: 'ID',
-	headerStyle: () => {
-		return {width: "5%"};
-	},
-	sort: true
-},{
-	dataField: 'name',
-	text: 'Name',
-	sort: true
-},{
-	dataField: 'username',
-	text: 'Username',
-	sort: true
-},{
-	dataField: 'telp',
-	text: 'Telp',
-	sort: true
-},{
-	dataField: 'level',
-	text: 'Level',
-	sort: true
-},{
-	dataField: 'entry_year',
-	text: 'Entry Year',
-	sort: true
-},
-{
-	dataField: "link",
-	text: "Action",
-	formatter: (rowContent,row) => {
-		return (
-			<div >
-				<Link to={"detail/"+row.id}>
-					<Button color="info" data-toggle="tooltip" title="Lihat Detail">
-						<FontAwesomeIcon icon={faInfo} color="white" />
-					</Button>
-				</Link>
-				{' '}
-				<Link to={"edit/"+row.id}>
-					<Button color="warning" data-toggle="tooltip" title="Edit Data Users">
-						<FontAwesomeIcon icon={faEdit} color="white" />
-					</Button>
-				</Link>
-				{' '}
-				<Link>
-					<Button color="danger" data-toggle="tooltip" title="Hapus Data Users">
-						<FontAwesomeIcon icon={faTrash} />
-					</Button>
-				</Link>
-				{' '}
-			</div>
-		);
-	},
-},
-];
+
+const handleClick=(dispatch, id) => {
+	swal({
+		text: "Are you sure to delete this user data?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if(willDelete) {
+				dispatch(deleteUser(id))
+				swal("Success! User Data Deleted",{
+					icon: "success",
+				});
+				function reload() {
+					document.location.reload();
+				}
+				setTimeout(reload,1500);
+			} else {
+				swal("User data is safe!");
+			}
+		});
+
+}
 
 const defaultSorted=[{
 	dataField: 'name',
@@ -89,6 +59,58 @@ const mapStateToProps=(state) => {
 };
 
 const TableComponent=(props) => {
+
+	const columns=[{
+		dataField: 'name',
+		text: 'Name',
+		sort: true
+	},{
+		dataField: 'username',
+		text: 'Username',
+		sort: true
+	},{
+		dataField: 'telp',
+		text: 'Telp',
+		sort: true
+	},{
+		dataField: 'level',
+		text: 'Level',
+		sort: true
+	},{
+		dataField: 'entry_year',
+		text: 'Entry Year',
+		sort: true
+	},
+	{
+		dataField: "link",
+		text: "Action",
+		formatter: (rowContent,row) => {
+			return (
+				<div >
+					<Link to={"detail/"+row.id}>
+						<Button color="info" data-toggle="tooltip" title="Lihat Detail">
+							<FontAwesomeIcon icon={faInfo} color="white" />
+						</Button>
+					</Link>
+					{' '}
+					<Link to={"edit/"+row.id}>
+						<Button color="warning" data-toggle="tooltip" title="Edit Data Users">
+							<FontAwesomeIcon icon={faEdit} color="white" />
+						</Button>
+					</Link>
+					{' '}
+					<Link>
+						<Button color="danger" data-toggle="tooltip" title="Hapus Data Users" onClick={() => {handleClick(props.dispatch, row.id);}}>
+							<FontAwesomeIcon icon={faTrash} />
+						</Button>
+					</Link>
+					{' '}
+				</div>
+			);
+		},
+	},
+	];
+
 	return (
 		<div>
 			<Container>

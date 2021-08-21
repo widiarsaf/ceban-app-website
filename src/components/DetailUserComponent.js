@@ -15,6 +15,11 @@ const DetailUserComponent=(props) => {
 		<Table striped>
 			<tbody>
 				<tr>
+					<td>ID User</td>
+					<td>:</td>
+					<td>{props.getUserDetail.id}</td>
+				</tr>
+				<tr>
 					<td>Nama</td>
 					<td>:</td>
 					<td>{props.getUserDetail.name}</td>

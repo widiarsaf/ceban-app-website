@@ -124,3 +124,15 @@ export const putUserEdit=(data, id) => {
 			});
 	};
 };
+
+export const deleteUser=(id) => {
+	return (dispatch) => {
+		axios.delete('/users/'+id)
+			.then(function(response) {
+				console.log(response)
+			})
+			.catch(function(error) {
+				console.log(error)
+			});
+	};
+};

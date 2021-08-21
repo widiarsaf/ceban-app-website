@@ -108,6 +108,7 @@ class FormComponent extends Component {
 								label="Entry Year :"
 							/>
 						</FormGroup>
+						<p style={{"fontSize": "10px"}}>* Masukkan angka "0000" jika tidak ada entry year</p>
 					</Col>
 
 					<Col md={6}>
@@ -124,7 +125,7 @@ class FormComponent extends Component {
 					</Col>
 				</FormGroup>
 
-				<FormGroup row className="mt-4">
+				<FormGroup row className="mt-3 mb-5">
 					<Col md="12">
 						<FormGroup>
 							<Button
