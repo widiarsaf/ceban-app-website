@@ -54,10 +54,17 @@ export const getUserDetail=(id) => {
 	};
 };
 
-export const deleteUserDetail=() => {
+export const deleteDataUser=() => {
 	return (dispatch) => {
 		dispatch({
 			type: GET_USER_DETAIL,
+			payload: {
+				data: false,
+				erorMessage: false
+			}
+		});
+		dispatch({
+			type: POST_USER_CREATE,
 			payload: {
 				data: false,
 				erorMessage: false

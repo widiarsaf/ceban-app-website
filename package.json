@@ -26,6 +26,7 @@
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "reverse-md5": "^0.0.5",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
